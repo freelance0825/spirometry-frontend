@@ -9,6 +9,7 @@ import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spirometryapp.R
+import com.example.spirometryapp.ui.user.UpdateDetailsActivity
 import com.example.spirometryapp.ui.user.WelcomeUserActivity
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -207,7 +208,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
         // Prioritize email from the previous page, fallback to API response
         val finalEmail = emailFromIntent ?: emailFromApi
 
-        val intent = Intent(this, WelcomeUserActivity::class.java).apply {
+        // Intent for WelcomeUserActivity (firstName to address)
+        val welcomeIntent = Intent(this, WelcomeUserActivity::class.java).apply {
             putExtra("firstName", userProfile.optString("firstName", "N/A"))
             putExtra("lastName", userProfile.optString("lastName", "N/A"))
             putExtra("email", finalEmail)
@@ -215,12 +217,13 @@ class ForgotPasswordActivity : AppCompatActivity() {
             putExtra("address", userProfile.optString("address", "N/A"))
             putExtra("birthDate", userProfile.optString("birthDate", "N/A"))
             putExtra("gender", userProfile.optString("gender", "N/A"))
-            putExtra("height", userProfile.optDouble("height", 0.0))
-            putExtra("weight", userProfile.optDouble("weight", 0.0))
+            putExtra("height", userProfile.optString("height", ""))
+            putExtra("weight", userProfile.optString("weight", ""))
         }
-        startActivity(intent)
+        startActivity(welcomeIntent)
         finish()
     }
+
 
     /* <------ FOR LOGGING PURPOSES LOGIC STARTS HERE --------> */
 

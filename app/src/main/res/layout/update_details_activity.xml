@@ -89,34 +89,53 @@
             android:textSize="16sp" />
 
 
-        <!-- Gender Label -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="Gender"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- Gender Dropdown (Material AutoCompleteTextView) -->
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Gender Section -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_input">
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/genderDropdown"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Select Gender"
-                android:padding="12dp"
-                android:textColorHint="@color/gray"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textColor="@color/black"
                 android:textSize="16sp"
-                android:focusable="false"
-                android:clickable="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rounded_input"
+                    android:gravity="center_vertical"
+                    android:hint="Select Gender"
+                    android:paddingStart="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:background="@android:drawable/arrow_down_float" />
+
+                <Spinner
+                    android:id="@+id/spinnerGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:visibility="gone"
+                    android:entries="@array/gender_options" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <!-- Height & Weight Row -->
         <LinearLayout

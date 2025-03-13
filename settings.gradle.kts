@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SpirometryApp"
+rootProject.name = "spirometry-frontend"
 include(":app")

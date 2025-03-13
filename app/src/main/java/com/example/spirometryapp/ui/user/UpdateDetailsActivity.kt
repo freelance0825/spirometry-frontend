@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spirometryapp.R
@@ -18,26 +19,77 @@ import java.util.*
 class UpdateDetailsActivity : AppCompatActivity() {
 
     private lateinit var birthDateEditText: EditText
-    private lateinit var genderDropdown: AutoCompleteTextView
+    private lateinit var tvGender: TextView
+    private lateinit var spinnerGender: Spinner
     private lateinit var heightEditText: EditText
     private lateinit var weightEditText: EditText
     private lateinit var submitButton: Button
     private lateinit var backButton: ImageView
+
+    private var isFirstSelection = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.update_details_activity)
 
         birthDateEditText = findViewById(R.id.etBirthDate)
-        genderDropdown = findViewById(R.id.genderDropdown)
+
+        tvGender = findViewById(R.id.tvGender)
+        spinnerGender = findViewById(R.id.spinnerGender)
+
+
         heightEditText = findViewById(R.id.heightInput)
         weightEditText = findViewById(R.id.weightInput)
         submitButton = findViewById(R.id.btnSubmit)
         backButton = findViewById(R.id.btnBack)
 
+
+        /*  <----- START OF GENDER LOGIC ------> */
+
+        // Load Gender Options from strings.xml
+        val genderOptions = resources.getStringArray(R.array.gender_options)
+
+        // Set up Spinner Adapter
+        val adapter = ArrayAdapter(this, R.layout.custom_spinner_dropdown, genderOptions)
+        spinnerGender.adapter = adapter
+
+        // Initially set hint text
+        tvGender.text = "Select Gender"
+
+        // Handle Click on TextView to Show Spinner
+        tvGender.setOnClickListener {
+            spinnerGender.visibility = View.VISIBLE
+            spinnerGender.performClick()
+        }
+
+        // Ensure the first selection works correctly
+        spinnerGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (isFirstSelection) {
+                    isFirstSelection = false
+                    return
+                }
+                tvGender.text = genderOptions[position]
+                spinnerGender.visibility = View.GONE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+
+        /* <------ END OF GENDER LOGIC -----------> */
+
+
+
         // Populate fields with data from WelcomeUserActivity intent
         intent.getStringExtra("birthDate")?.let { birthDateEditText.setText(it) }
-        intent.getStringExtra("gender")?.let { genderDropdown.setText(it) }
+        intent.getStringExtra("gender")?.let { tvGender.setText(it) }
         intent.getStringExtra("height")?.let { heightEditText.setText(it) }
         intent.getStringExtra("weight")?.let { weightEditText.setText(it) }
 
@@ -59,7 +111,6 @@ class UpdateDetailsActivity : AppCompatActivity() {
             )
         }
         birthDateEditText.setOnClickListener { showDatePicker() }
-        setupGenderDropdown()
     }
 
     private fun showDatePicker() {
@@ -79,15 +130,6 @@ class UpdateDetailsActivity : AppCompatActivity() {
     }
 
 
-    private fun setupGenderDropdown() {
-        val genderOptions = arrayOf("Male", "Female", "Other")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, genderOptions)
-        genderDropdown.setAdapter(adapter)
-        genderDropdown.setOnClickListener { genderDropdown.showDropDown() }
-        genderDropdown.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) genderDropdown.showDropDown() }
-        genderDropdown.setOnItemClickListener { _, _, _, _ -> genderDropdown.clearFocus() }
-    }
-
     private fun sendUserDataToBackend(
         firstName: String,
         lastName: String,
@@ -96,7 +138,7 @@ class UpdateDetailsActivity : AppCompatActivity() {
         address: String
     ) {
         val birthDate = birthDateEditText.text.toString().trim()
-        val gender = genderDropdown.text.toString().trim()
+        val gender = tvGender.text.toString().trim()
         val height = heightEditText.text.toString().trim()
         val weight = weightEditText.text.toString().trim()
 

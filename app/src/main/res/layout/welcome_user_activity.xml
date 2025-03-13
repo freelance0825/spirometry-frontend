@@ -9,7 +9,7 @@
     <!-- Header Section -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="250dp"
         android:background="@color/primaryColor">
 
         <LinearLayout
@@ -18,8 +18,9 @@
             android:fitsSystemWindows="true"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="20dp">
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="40dp">
 
             <!-- Back Button -->
             <ImageView
@@ -27,6 +28,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="Back"
                 android:src="@drawable/arrow_left_icon"
                 app:tint="@color/white" />
@@ -35,8 +37,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="30dp"
                 android:text="Welcome."
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
@@ -46,13 +47,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:text="Tell us about yourself."
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
         </LinearLayout>
     </FrameLayout>
+
 
     <!-- Input Fields Section -->
 
@@ -130,54 +131,6 @@
                     android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
-        </LinearLayout>
-
-        <!-- Gender Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/rounded_input"
-                    android:gravity="center_vertical"
-                    android:hint="Select Gender"
-                    android:paddingStart="12dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="12dp"
-                    android:background="@android:drawable/arrow_down_float" />
-
-                <Spinner
-                    android:id="@+id/spinnerGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:visibility="gone"
-                    android:entries="@array/gender_options" />
-            </RelativeLayout>
         </LinearLayout>
 
         <!-- Email Section -->
