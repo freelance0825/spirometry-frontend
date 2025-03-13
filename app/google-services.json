@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1019264827751",
+    "project_id": "spirometry-app",
+    "storage_bucket": "spirometry-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019264827751:android:b3a4409f95c78d9fdaafc2",
+        "android_client_info": {
+          "package_name": "com.example.spirometryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019264827751-l050kkfhr82gl6buld3p3qmpe7n6efj6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spirometryapp",
+            "certificate_hash": "1939c2c5898676afa36788b76c150fefbcb1a933"
+          }
+        },
+        {
+          "client_id": "1019264827751-btauuitq1b5h355ug5u07pll7g9d1v8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqFyjI0zjdvwKTkBkxsd-1oEkc69jxUz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019264827751-btauuitq1b5h355ug5u07pll7g9d1v8k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
