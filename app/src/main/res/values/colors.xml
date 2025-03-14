@@ -7,12 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <color name="blue">#2979FF</color>
     <color name="gray">#BDBDBD</color>
     <color name="light_gray">#F5F5F5</color>
-
     <color name="primaryDarkColor">#3700B3</color> <!-- Darker shade -->
-    <color name="primaryColor">#2979FF</color> <!-- Light Blue -->
+
+    <color name="blue">#0000BF</color> <!-- Button Blue -->
+    <color name="primaryColor">#0000BF</color> <!-- Header Blue -->
+
+
+
 
 </resources>
