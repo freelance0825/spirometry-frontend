@@ -50,7 +50,7 @@ class RegisterEmailActivity : AppCompatActivity() {
     }
 
     private fun loadEmailFromIntent() {
-        intent.getStringExtra("EMAIL")?.let { emailEditText.setText(it) }
+        intent.getStringExtra("email")?.let { emailEditText.setText(it) }
     }
 
     private fun setClickListeners() {
