@@ -2,6 +2,7 @@ package com.example.spirometryapp.ui.user
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spirometryapp.R
+import com.example.spirometryapp.ui.login.LoginEmailActivity
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -84,7 +86,6 @@ class UpdateDetailsActivity : AppCompatActivity() {
         }
 
         /* <------ END OF GENDER LOGIC -----------> */
-
 
 
         // Populate fields with data from WelcomeUserActivity intent
@@ -192,6 +193,9 @@ class UpdateDetailsActivity : AppCompatActivity() {
                         "Failed to update profile",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    // Redirect to LoginEmailActivity
+                    navigateToLoginEmailActivity()
                 }
             }
 
@@ -220,4 +224,11 @@ class UpdateDetailsActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun navigateToLoginEmailActivity() {
+        val intent = Intent(this@UpdateDetailsActivity, LoginEmailActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }
