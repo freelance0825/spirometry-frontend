@@ -1,7 +1,9 @@
+// App-level build.gradle.kts
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services") // Apply the Google services plugin here
 }
 
 android {
@@ -72,12 +74,18 @@ dependencies {
     // Volley
     implementation("com.android.volley:volley:1.2.1")
 
-    //OKHTTP3
+    // OKHTTP3
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     // For Dropdown
-    implementation ("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.11.0")
+
+    // Firebase dependencies
+    implementation("com.google.firebase:firebase-auth-ktx:21.0.1")  // Firebase Authentication SDK
+    implementation("com.google.firebase:firebase-analytics-ktx:21.0.0") // Optional: Firebase Analytics SDK
+    implementation("com.google.android.gms:play-services-auth:20.3.0") // Google Sign-In
+
 
     // Testing dependencies
     testImplementation(libs.junit)

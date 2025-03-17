@@ -5,5 +5,7 @@
         <item>Female</item>
         <item>Other</item>
     </string-array>
+    <!-- Add Web Client ID for Google Sign-In -->
+    <string name="default_web_client_id">1019264827751-btauuitq1b5h355ug5u07pll7g9d1v8k.apps.googleusercontent.com</string>
 
 </resources>
