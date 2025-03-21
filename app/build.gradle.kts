@@ -86,6 +86,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx:21.0.0") // Optional: Firebase Analytics SDK
     implementation("com.google.android.gms:play-services-auth:20.3.0") // Google Sign-In
 
+    // Material Components
+    implementation("com.google.android.material:material:1.11.0")
 
     // Testing dependencies
     testImplementation(libs.junit)

@@ -12,34 +12,37 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/running_man"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/landing_img"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Content Container -->
     <LinearLayout
         android:id="@+id/contentContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <!-- Title Text -->
         <TextView
             android:id="@+id/tvTitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="8dp"
             android:text="Stay Healthy."
-            android:textSize="26sp"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:gravity="center" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
@@ -49,11 +52,14 @@
             android:id="@+id/tvTitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="8dp"
             android:text="Monitor your Lungs."
-            android:textSize="22sp"
             android:textColor="@android:color/white"
-            android:textStyle="normal"
-            android:gravity="center" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
@@ -65,16 +71,19 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="@android:color/white"
+            android:fontFamily="@font/sf_pro_display"
+            android:letterSpacing="0.02"
             android:text="Login/Register with Google"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:cornerRadius="50dp"
             app:icon="@drawable/google_icon"
-            app:iconPadding="12dp"
             app:iconGravity="textStart"
-            app:iconTint="@null"
-            android:layout_marginBottom="12dp" />
+            app:iconPadding="12dp"
+            app:iconTint="@null" />
 
         <!-- Email Sign-In Button -->
         <com.google.android.material.button.MaterialButton
@@ -83,13 +92,16 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:backgroundTint="@android:color/white"
+            android:fontFamily="@font/sf_pro_display"
+            android:letterSpacing="0.02"
             android:text="Login/Register with Email"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:cornerRadius="50dp"
             app:icon="@android:drawable/ic_dialog_email"
-            app:iconPadding="12dp"
             app:iconGravity="textStart"
+            app:iconPadding="12dp"
             app:iconTint="@android:color/black" />
 
     </LinearLayout>

@@ -14,7 +14,11 @@
     <color name="blue">#0000BF</color> <!-- Button Blue -->
     <color name="primaryColor">#0000BF</color> <!-- Header Blue -->
 
-
-
+    <!-- Spirometry Test Record Cards -->
+    <color name="lightBlue">#F1FCFF</color>
+    <color name="lightYellow">#FFFCF1</color>
+    <color name="lightPurple">#FDF9FF</color>
+    <color name="red">#FF4040</color>
+    <color name="purple">#773399</color>
 
 </resources>

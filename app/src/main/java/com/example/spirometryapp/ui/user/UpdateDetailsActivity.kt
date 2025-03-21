@@ -7,16 +7,27 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spirometryapp.R
-import com.example.spirometryapp.ui.login.LoginEmailActivity
-import okhttp3.*
+import com.example.spirometryapp.ui.spirometry.StartSpirometryTest
+import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
-import java.util.*
+import java.util.Calendar
 
 class UpdateDetailsActivity : AppCompatActivity() {
 
@@ -34,12 +45,10 @@ class UpdateDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.update_details_activity)
 
+        //Initialize UI
         birthDateEditText = findViewById(R.id.etBirthDate)
-
         tvGender = findViewById(R.id.tvGender)
         spinnerGender = findViewById(R.id.spinnerGender)
-
-
         heightEditText = findViewById(R.id.heightInput)
         weightEditText = findViewById(R.id.weightInput)
         submitButton = findViewById(R.id.btnSubmit)
@@ -101,7 +110,10 @@ class UpdateDetailsActivity : AppCompatActivity() {
         val phoneNumber = intent.getStringExtra("phoneNumber") ?: ""
         val address = intent.getStringExtra("address") ?: ""
 
+        // Back Button Logic
         backButton.setOnClickListener { finish() }
+
+        // Submit Button Logic
         submitButton.setOnClickListener {
             sendUserDataToBackend(
                 firstName,
@@ -114,14 +126,17 @@ class UpdateDetailsActivity : AppCompatActivity() {
         birthDateEditText.setOnClickListener { showDatePicker() }
     }
 
+    // Date Picker (Birthdate) Logic
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog =
-            DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+        val datePickerDialog = DatePickerDialog(
+            this,
+            R.style.CustomDatePickerDialog, // Apply custom style
+            { _, selectedYear, selectedMonth, selectedDay ->
                 val selectedDate =
                     String.format("%02d-%02d-%04d", selectedMonth + 1, selectedDay, selectedYear)
                 birthDateEditText.setText(selectedDate)
@@ -129,7 +144,6 @@ class UpdateDetailsActivity : AppCompatActivity() {
 
         datePickerDialog.show()
     }
-
 
     private fun sendUserDataToBackend(
         firstName: String,
@@ -193,25 +207,22 @@ class UpdateDetailsActivity : AppCompatActivity() {
                         "Failed to update profile",
                         Toast.LENGTH_SHORT
                     ).show()
-
-                    // Redirect to LoginEmailActivity
-                    navigateToLoginEmailActivity()
                 }
             }
 
             override fun onResponse(call: Call, response: Response) {
-                runOnUiThread {
-                    val responseBody = response.body?.string()
-                    Log.d("UpdateProfile", "Raw response: ${responseBody ?: "No response body"}")
-                    Log.d("UpdateProfile", "Response code: ${response.code}")
+                val responseBody = response.body?.string()
+                Log.d("UpdateProfile", "Raw response: ${responseBody ?: "No response body"}")
+                Log.d("UpdateProfile", "Response code: ${response.code}")
 
+                runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(
                             this@UpdateDetailsActivity,
                             "Profile updated successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-                        finish()
+                        navigateToStartSpirometryTest()
                     } else {
                         Log.e("UpdateProfile", "Update failed: $responseBody")
                         Toast.makeText(
@@ -225,8 +236,8 @@ class UpdateDetailsActivity : AppCompatActivity() {
         })
     }
 
-    private fun navigateToLoginEmailActivity() {
-        val intent = Intent(this@UpdateDetailsActivity, LoginEmailActivity::class.java)
+    private fun navigateToStartSpirometryTest() {
+        val intent = Intent(this@UpdateDetailsActivity, StartSpirometryTest::class.java)
         startActivity(intent)
         finish()
     }
